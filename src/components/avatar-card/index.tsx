@@ -1,4 +1,3 @@
-import { FALLBACK_IMAGE } from '../../constants';
 import { Profile } from '../../interfaces/profile';
 import { skeleton } from '../../utils';
 import LazyImage from '../lazy-image';
@@ -48,7 +47,7 @@ const AvatarCard: React.FC<AvatarCardProps> = ({
             >
               {
                 <LazyImage
-                  src={profile.avatar ? profile.avatar : FALLBACK_IMAGE}
+                  src={`${import.meta.env.BASE_URL}abc.png`}
                   alt={profile.name}
                   placeholder={skeleton({
                     widthCls: 'w-full',

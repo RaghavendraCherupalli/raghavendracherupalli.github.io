@@ -1,3 +1,4 @@
+
 @import 'tailwindcss';
 @plugin "daisyui" {
   themes:
@@ -8,6 +9,13 @@
     'night', 'coffee', 'winter', 'dim', 'nord', 'sunset', 'caramellatte',
     'abyss', 'silk', 'procyon';
 }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem; 
+  font-size: 18px;
+}
+
 
 @plugin "daisyui/theme" {
   name: 'procyon';

@@ -118,6 +118,11 @@ interface Social {
   x?: string;
 
   /**
+   * ORCID iD
+   */
+  orcid?: string;
+
+  /**
    * Mastodon
    */
   mastodon?: string;

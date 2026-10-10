@@ -27,7 +27,9 @@ import ExternalProjectCard from './external-project-card';
 import BlogCard from './blog-card';
 import Footer from './footer';
 import PublicationCard from './publication-card';
-
+import Navbar from './navbar';
+import TalksCard from './talks_and_teaching'
+import config from '../../gitprofile.config';
 /**
  * Formats the GitHub rate limit reset time for display.
  *
@@ -203,7 +205,7 @@ const GitProfileContent = ({
     }
   }, [theme]);
 
-  return (
+ return (
     <div className="fade-in h-screen">
       {error ? (
         <ErrorPage
@@ -213,8 +215,11 @@ const GitProfileContent = ({
         />
       ) : (
         <>
+          <Navbar />
           <div className={`p-4 lg:p-10 min-h-full ${BG_COLOR}`}>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 rounded-box">
+              
+              {/* LEFT COLUMN */}
               <div className="col-span-1">
                 <div className="grid grid-cols-1 gap-6">
                   {!sanitizedConfig.themeConfig.disableSwitch && (
@@ -225,71 +230,89 @@ const GitProfileContent = ({
                       themeConfig={sanitizedConfig.themeConfig}
                     />
                   )}
-                  <AvatarCard
-                    profile={profile}
-                    loading={loading}
-                    avatarRing={sanitizedConfig.themeConfig.displayAvatarRing}
-                    resumeFileUrl={sanitizedConfig.resume.fileUrl}
-                  />
-                  <DetailsCard
-                    profile={profile}
-                    loading={loading}
-                    github={sanitizedConfig.github}
-                    social={sanitizedConfig.social}
-                  />
+                  
+                  {/* ABOUT SECTION */}
+                  <div id="about">
+                    <AvatarCard
+                      profile={profile}
+                      loading={loading}
+                      avatarRing={sanitizedConfig.themeConfig.displayAvatarRing}
+                      resumeFileUrl={sanitizedConfig.resume.fileUrl}
+                    />
+                    <DetailsCard
+                      profile={profile}
+                      loading={loading}
+                      github={sanitizedConfig.github}
+                      social={sanitizedConfig.social}
+                    />
+                  </div>
+                  
                   {sanitizedConfig.skills.length !== 0 && (
-                    <SkillCard
-                      loading={loading}
-                      skills={sanitizedConfig.skills}
-                    />
+                    <SkillCard loading={loading} skills={sanitizedConfig.skills} />
                   )}
+                  
+                  {/* EXPERIENCE */}
                   {sanitizedConfig.experiences.length !== 0 && (
-                    <ExperienceCard
-                      loading={loading}
-                      experiences={sanitizedConfig.experiences}
-                    />
+                    <div id="experience">
+                      <ExperienceCard loading={loading} experiences={sanitizedConfig.experiences} />
+                    </div>
                   )}
+                  
                   {sanitizedConfig.certifications.length !== 0 && (
-                    <CertificationCard
-                      loading={loading}
-                      certifications={sanitizedConfig.certifications}
-                    />
+                    <CertificationCard loading={loading} certifications={sanitizedConfig.certifications} />
                   )}
+                  
+                  {/* EDUCATION */}
                   {sanitizedConfig.educations.length !== 0 && (
-                    <EducationCard
-                      loading={loading}
-                      educations={sanitizedConfig.educations}
-                    />
+                    <div id="education">
+                      <EducationCard loading={loading} educations={sanitizedConfig.educations} />
+                    </div>
                   )}
                 </div>
               </div>
+              
+              {/* RIGHT COLUMN */}
               <div className="lg:col-span-2 col-span-1">
                 <div className="grid grid-cols-1 gap-6">
+                  
+                  {/* GITHUB PROJECTS */}
                   {sanitizedConfig.projects.github.display && (
-                    <GithubProjectCard
-                      header={sanitizedConfig.projects.github.header}
-                      limit={sanitizedConfig.projects.github.automatic.limit}
-                      githubProjects={githubProjects}
-                      loading={loading}
-                      googleAnalyticsId={sanitizedConfig.googleAnalytics.id}
-                    />
+                    <div id="projects">
+                      <GithubProjectCard
+                        header={sanitizedConfig.projects.github.header}
+                        limit={sanitizedConfig.projects.github.automatic.limit}
+                        githubProjects={githubProjects}
+                        loading={loading}
+                        googleAnalyticsId={sanitizedConfig.googleAnalytics.id}
+                      />
+                    </div>
                   )}
-                  {sanitizedConfig.publications.length !== 0 && (
-                    <PublicationCard
-                      loading={loading}
-                      publications={sanitizedConfig.publications}
-                    />
-                  )}
+                  
+                  {/* EXTERNAL PROJECTS */}
                   {sanitizedConfig.projects.external.projects.length !== 0 && (
                     <ExternalProjectCard
                       loading={loading}
                       header={sanitizedConfig.projects.external.header}
-                      externalProjects={
-                        sanitizedConfig.projects.external.projects
-                      }
+                      externalProjects={sanitizedConfig.projects.external.projects}
                       googleAnalyticId={sanitizedConfig.googleAnalytics.id}
                     />
                   )}
+
+                  {/* PUBLICATIONS */}
+                  {sanitizedConfig.publications && sanitizedConfig.publications.length !== 0 && (
+                    <div id="publications">
+                      <PublicationCard
+                        loading={loading}
+                        publications={sanitizedConfig.publications}
+                      />
+                    </div>
+                  )}
+                  {config.talks_and_teaching && (
+                     <div id="talks_and_teaching">
+                       <TalksCard data={config.talks_and_teaching || []} />
+                      </div>
+                  )}
+                  {/* BLOG / EXTRA */}
                   {sanitizedConfig.blog.display && (
                     <BlogCard
                       loading={loading}
@@ -297,14 +320,14 @@ const GitProfileContent = ({
                       blog={sanitizedConfig.blog}
                     />
                   )}
+                  
                 </div>
               </div>
             </div>
           </div>
+          
           {sanitizedConfig.footer && (
-            <footer
-              className={`p-4 footer ${BG_COLOR} text-base-content footer-center`}
-            >
+            <footer className={`p-4 footer ${BG_COLOR} text-base-content footer-center`}>
               <div className="card card-sm bg-base-100 shadow-sm">
                 <Footer content={sanitizedConfig.footer} loading={loading} />
               </div>

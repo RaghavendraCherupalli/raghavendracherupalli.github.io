@@ -45,11 +45,13 @@ export interface SanitizedSEO {
 export interface SanitizedSocial {
   linkedin?: string;
   x?: string;
+  orcid?: string;
   mastodon?: string;
   researchGate?: string;
   facebook?: string;
   instagram?: string;
   reddit?: string;
+  
   threads?: string;
   youtube?: string;
   udemy?: string;
@@ -130,7 +132,7 @@ export interface SanitizedConfig {
   seo: SanitizedSEO;
   social: SanitizedSocial;
   resume: SanitizedResume;
-  skills: Array<string>;
+  skills: any[];
   experiences: Array<SanitizedExperience>;
   educations: Array<SanitizedEducation>;
   certifications: Array<SanitizedCertification>;

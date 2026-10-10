@@ -28,7 +28,7 @@ import {
   SanitizedSocial,
 } from '../../interfaces/sanitized-config';
 import { skeleton } from '../../utils';
-
+import { FaOrcid } from 'react-icons/fa';
 type Props = {
   profile: Profile | null;
   loading: boolean;
@@ -230,7 +230,7 @@ const DetailsCard = ({ profile, loading, social, github }: Props) => {
                   icon={<FaLinkedin />}
                   title="LinkedIn:"
                   value={social.linkedin}
-                  link={`https://www.linkedin.com/in/${social.linkedin}`}
+                  link={`https://www.linkedin.com/in/raghavendra-cherupalli-22818119a`}
                 />
               )}
               {social?.dribbble && (
@@ -249,6 +249,7 @@ const DetailsCard = ({ profile, loading, social, github }: Props) => {
                   link={`https://www.behance.net/${social.behance}`}
                 />
               )}
+              
               {social?.facebook && (
                 <ListItem
                   icon={<FaFacebook />}
@@ -257,6 +258,14 @@ const DetailsCard = ({ profile, loading, social, github }: Props) => {
                   link={`https://www.facebook.com/${social.facebook}`}
                 />
               )}
+              {social?.orcid && (
+                <ListItem
+                icon={<FaOrcid />}
+                title="ORCID"
+                value={social.orcid}
+                link={`https://orcid.org/${social.orcid}`}
+            />
+          )}
               {social?.instagram && (
                 <ListItem
                   icon={<AiFillInstagram />}

@@ -64,6 +64,7 @@ export const getSanitizedConfig = (
       social: {
         linkedin: config?.social?.linkedin,
         x: config?.social?.x,
+        orcid: config?.social?.orcid,
         mastodon: config?.social?.mastodon,
         facebook: config?.social?.facebook,
         instagram: config?.social?.instagram,
